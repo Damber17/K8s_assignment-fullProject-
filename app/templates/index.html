@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Management</title>
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+  <script defer
+          src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <div>
+        <p class="eyebrow">COLLEGE ADMINISTRATION</p>
+        <h1>Student Management</h1>
+        <p>Add students and keep their details up to date.</p>
+      </div>
+      <span class="badge">Student Directory</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <p id="message" class="message" role="status" aria-live="polite" hidden></p>
+
+    <div class="layout">
+      <section class="card">
+        <h2 id="form-title">Add a student</h2>
+        <p class="muted">Enter the student's basic details.</p>
+
+        <form id="student-form">
+          <label for="name">Full name</label>
+          <input id="name" name="name" required maxlength="100"
+                 autocomplete="name" placeholder="e.g. Pema Wangchuk">
+
+          <label for="student_id">Student ID</label>
+          <input id="student_id" name="student_id" required maxlength="30"
+                 placeholder="e.g. 02230123">
+
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" required
+                 maxlength="254" autocomplete="email"
+                 placeholder="student@example.com">
+
+          <label for="department">Department</label>
+          <select id="department" name="department" required>
+            <option value="">Select a department</option>
+            <option>Information Technology</option>
+            <option>Software Engineering</option>
+            <option>Civil Engineering</option>
+            <option>Electrical Engineering</option>
+            <option>Electronics and Communication</option>
+            <option>Mechanical Engineering</option>
+            <option>Architecture</option>
+            <option>Engineering Geology</option>
+            <option>Instrumentation and Control</option>
+            <option>Water Resources Engineering</option>
+            <option>Other</option>
+          </select>
+
+          <div class="form-actions">
+            <button id="save-button" type="submit">Save student</button>
+            <button id="cancel-button" class="secondary" type="button">
+              Clear
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card directory">
+        <div class="directory-heading">
+          <div>
+            <h2>Registered students</h2>
+            <p id="count" class="muted">Loading students…</p>
+          </div>
+          <button id="refresh-button" class="secondary" type="button">
+            Refresh
+          </button>
+        </div>
+
+        <label class="sr-only" for="search">Search students</label>
+        <input id="search" type="search"
+               placeholder="Search name, ID, email, or department">
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="student-list"></tbody>
+          </table>
+        </div>
+
+        <p id="empty-state" class="empty" hidden>
+          No students found.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container footer">
+    Student Management · 02230123
+  </footer>
+</body>
+</html>
